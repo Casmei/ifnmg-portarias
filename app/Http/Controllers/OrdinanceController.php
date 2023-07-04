@@ -52,6 +52,7 @@ class OrdinanceController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('acesso-restrito-servidor');
         $request->validate([
             'ordinance_number' => 'required',
             'start_date' => 'required|date',
@@ -104,13 +105,13 @@ class OrdinanceController extends Controller
 
 
     public function download($id)
-{
-    $ordinance = Ordinance::findOrFail($id);
+    {
+        $ordinance = Ordinance::findOrFail($id);
 
-    // Verifique se a URL do arquivo PDF está disponível
-    if (!empty($ordinance->pdf_url)) {
-        $filePath = str_replace('/storage', 'public', $ordinance->pdf_url);
-        return Storage::download($filePath);
+        // Verifique se a URL do arquivo PDF está disponível
+        if (!empty($ordinance->pdf_url)) {
+            $filePath = str_replace('/storage', 'public', $ordinance->pdf_url);
+            return Storage::download($filePath);
     }
 
         // Redirecione ou exiba uma mensagem de erro, caso não tenha PDF disponível
@@ -122,6 +123,7 @@ class OrdinanceController extends Controller
      */
     public function show(string $id)
     {
+        Gate::authorize('acesso-restrito-servidor');
         //
     }
 
@@ -130,6 +132,8 @@ class OrdinanceController extends Controller
      */
     public function edit(string $id)
     {
+
+        Gate::authorize('acesso-restrito-servidor');
         $portaria = Ordinance::where('id', $id)->first();
         // $positions = Position::all();
 
@@ -146,6 +150,7 @@ class OrdinanceController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        Gate::authorize('acesso-restrito-servidor');
         //
     }
 
@@ -154,6 +159,7 @@ class OrdinanceController extends Controller
      */
     public function destroy(string $id)
     {
+        Gate::authorize('acesso-restrito-servidor');
         //
     }
 }

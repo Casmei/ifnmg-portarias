@@ -24,6 +24,7 @@ class GestorController extends Controller
      */
     public function create()
     {
+        Gate::authorize('acesso-permitido-admin');
         //
     }
 
@@ -32,6 +33,7 @@ class GestorController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('acesso-permitido-admin');
         //
     }
 
@@ -40,6 +42,7 @@ class GestorController extends Controller
      */
     public function show(string $id)
     {
+        Gate::authorize('acesso-permitido-admin');
         //
     }
 
@@ -48,6 +51,7 @@ class GestorController extends Controller
      */
     public function edit(string $id)
     {
+        Gate::authorize('acesso-permitido-admin');
         //
     }
 
@@ -56,6 +60,7 @@ class GestorController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        Gate::authorize('acesso-permitido-admin');
         //
     }
 
@@ -64,6 +69,7 @@ class GestorController extends Controller
      */
     public function destroy(string $id)
     {
+        Gate::authorize('acesso-permitido-admin');
         //
     }
 }
